@@ -27,12 +27,12 @@ services:
       - WORDPRESS_DB_NAME=wordpress
 volumes:
   db_data:
-    driver: azure_files
+    driver: azure_file
     driver_opts:
       share_name: sql-volume
       storage_account_name: wordpresssa
   wp_data:
-    driver: azure_files
+    driver: azure_file
     driver_opts:
       share_name: sql-volume
       storage_account_name: wordpresssa
