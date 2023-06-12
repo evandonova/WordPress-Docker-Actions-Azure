@@ -1,5 +1,5 @@
 services:
-  wordpress_db:
+  wordpress-db:
     image: mysql:latest
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
@@ -13,7 +13,7 @@ services:
     expose:
       - 3306
       - 33060
-  wordpress_site:
+  wordpress-site:
     image: wordpress:latest
     volumes:
       - wp-data:/var/www/html
