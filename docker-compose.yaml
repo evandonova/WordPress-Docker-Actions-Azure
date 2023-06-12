@@ -30,9 +30,9 @@ volumes:
     driver: azure_file
     driver_opts:
       share_name: sql-volume
-      storage_account_name: wordpresssa
+      storage_account_name: mywordpressacc15
   wp_data:
     driver: azure_file
     driver_opts:
       share_name: sql-volume
-      storage_account_name: wordpresssa
+      storage_account_name: mywordpressacc15
