@@ -3,7 +3,7 @@ services:
     image: mysql:latest
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
-      - db_data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -16,7 +16,7 @@ services:
   wordpress_site:
     image: wordpress:latest
     volumes:
-      - wp_data:/var/www/html
+      - wp-data:/var/www/html
     ports:
       - 80:80
     restart: always
@@ -26,12 +26,12 @@ services:
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
 volumes:
-  db_data:
+  db-data:
     driver: azure_file
     driver_opts:
       share_name: sql-volume
       storage_account_name: mywordpressacc15
-  wp_data:
+  wp-data:
     driver: azure_file
     driver_opts:
       share_name: sql-volume
