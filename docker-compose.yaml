@@ -1,38 +1,39 @@
+version: '3.1'
+
 services:
-  wordpress-db:
-    image: mysql:latest
-    command: '--default-authentication-plugin=mysql_native_password'
-    volumes:
-      - db-data:/var/lib/mysql
+  wordpress:
+    image: wordpress
     restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=somewordpress
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wordpress
-      - MYSQL_PASSWORD=wordpress
-    expose:
-      - 3306
-      - 33060
-  wordpress-site:
-    image: wordpress:latest
-    volumes:
-      - wp-data:/var/www/html
     ports:
       - 80:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wp-data:/var/www/html
+
+  db:
+    image: mysql:5.7
     restart: always
     environment:
-      - WORDPRESS_DB_HOST=wordpress_db
-      - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wordpress
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db-data:/var/lib/mysql
+      
+      
 volumes:
+  wp-data:
+    driver: azure_file
+    driver_opts:
+      share_name: site-volume
+      storage_account_name: mywordpressaccsite
   db-data:
     driver: azure_file
     driver_opts:
       share_name: sql-volume
-      storage_account_name: mywordpressacc15
-  wp-data:
-    driver: azure_file
-    driver_opts:
-      share_name: sql-volume
-      storage_account_name: mywordpressacc15
+      storage_account_name: mywordpressaccdb
