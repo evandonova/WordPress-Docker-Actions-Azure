@@ -17,13 +17,13 @@ jobs:
         - name: Add the compose-cli module
           run: curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh
         
-        - name: Login with Docker Login
-          run: docker login azure --client-id  ${{ secrets.AZURE_CLIENT_ID }} --client-secret ${{ secrets.AZURE_CLIENT_SECRET }} --tenant-id ${{ secrets.AZURE_TENANT_ID }}
+        - name: Login with Docker
+          run: docker login azure --client-id ${{ secrets.AZURE_CLIENT_ID }} --client-secret ${{ secrets.AZURE_CLIENT_SECRET }} --tenant-id ${{ secrets.AZURE_TENANT_ID }}
         
         - name: Create and use ACI context
           run: |
-            docker context create aci myacicontext --resource-group "myResourceGroup"
-            docker context use myacicontext
+            docker context create aci wordpresscontext --resource-group "myResourceGroup"
+            docker context use wordpresscontext
        
         - name: Run Docker Compose
           run: docker compose up
