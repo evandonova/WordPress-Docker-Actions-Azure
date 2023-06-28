@@ -13,7 +13,7 @@ Running **WordPress** (WordPress site + MySQL database containers) in **Azure Co
   - It checkouts the repo -> logs in Azure through Azure CLI using credentials in GitHub secrets -> logs in Azure with Docker -> creates and uses ACI context -> runs the Docker Compose file.
 
 ## Steps to run:
-  1) Create **resource group** in Azure.
+  1) Create a **resource group** named "**WordPressRG**" in Azure.
   2) Run **commands** in Powershell using **Azure CLI** to get **resource group id**, also **create a service principal** and get the returned **JSON with Azure credentials**:
 
   ```
