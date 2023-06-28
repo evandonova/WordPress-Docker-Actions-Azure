@@ -22,7 +22,7 @@ jobs:
         
         - name: Create and use ACI context
           run: |
-            docker context create aci wordpresscontext --resource-group "myResourceGroup"
+            docker context create aci wordpresscontext --resource-group "WordPressRG"
             docker context use wordpresscontext
        
         - name: Run Docker Compose
